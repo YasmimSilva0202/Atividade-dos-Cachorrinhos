@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="Pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cachorro</title>
+    <style>
+        img{width: 64px; height: 64px;border-radius:50%; border:rgb(202, 128, 202) solid 5px;}
+    </style>
+</head>
+<body>
+<div id="container"></div>
+
+<script>
+    const url="https://dog.ceo/api/breeds/image/random";
+    const quantidade=5;
+    for(let i=0;i<quantidade; i++)
+    {
+        fetch(url)
+        .then(response=>response.json())
+        .then((data)=>{
+            console.log(data);
+            if(data.status=="success")
+            {
+                container = document.getElementById("container");
+                let red= Math.random()*255;
+                let green= Math.random()*255;
+                let blue= Math.random()*255;
+                let style= `border-color: rgb(${red}, ${green}, ${blue})`;
+                container.innerHTML+=`<img src="${data.message}"style="${style}">`;
+            }
+        });
+    }
+</script>
+</body>
+</html>
